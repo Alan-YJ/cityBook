@@ -102,3 +102,4 @@ D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\ru\Microsoft.Co
 D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\source\repos\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json
