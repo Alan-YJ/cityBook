@@ -2,15 +2,14 @@
 
 namespace WebApplication1.Models
 {
-    public class CoreDbContext: DbContext
+    public partial class CoreDbContext: DbContext
     {
         public virtual DbSet<Book> Book { get; set; }
 
+        public CoreDbContext(DbContextOptions<CoreDbContext> options) : base(options) { 
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured) {
-                optionsBuilder.UseMySql(@"Server=47.108.165.93;port=3306;database=bookcity;uid=yijing;pwd=123456;", new MySqlServerVersion(new Version(8,0,2)));
-            }
         }
 
         /// <summary>

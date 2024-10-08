@@ -6,23 +6,29 @@ using WebApplication1.Models;
 namespace WebApplication1.Controllers
 {
     [ApiController]
-    [Route("book/[controller]")]
     public class BookController : Controller
     {
-        // GET: book/list
-        [HttpGet]
-        public List<Book> List()
+        private readonly CoreDbContext _coreDbContext;
+        public BookController(CoreDbContext coreDbContext)
         {
-            using (CoreDbContext _coreDbContext = new CoreDbContext()) { 
-                return _coreDbContext.Set<Book>().ToList();
-            }
+            _coreDbContext = coreDbContext;
         }
 
-        //// GET: BookController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: book/list
+        [HttpGet]
+        [Route("book/list")]
+        public List<Book> List()
+        {
+            return _coreDbContext.Set<Book>().ToList();
+        }
+
+        // GET: book/detail/{id}
+        [HttpGet]
+        [Route("book/detail/{id}")]
+        public Book Detail(int id)
+        {
+            return _coreDbContext.Set<Book>().First(x => x.Id == id);
+        }
 
         //// GET: BookController/Create
         //public ActionResult Create()
