@@ -27,7 +27,16 @@ namespace WebApplication1.Controllers
         [Route("book/detail/{id}")]
         public Book Detail(int id)
         {
-            return _coreDbContext.Set<Book>().First(x => x.Id == id);
+            return _coreDbContext.Set<Book>().Single(x => x.Id == id);
+        }
+
+        // POST: book/add
+        [HttpPost]
+        [Route("book/create")]
+        public async Task<ActionResult<Book>> create(Book book) { 
+            _coreDbContext.Book.Add(book);
+            await _coreDbContext.SaveChangesAsync();
+            return CreatedAtAction(nameof(Detail), new { id = book.Id });
         }
 
         //// GET: BookController/Create

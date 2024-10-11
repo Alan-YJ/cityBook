@@ -1,6 +1,26 @@
 [
   {
     "ContainingType": "WebApplication1.Controllers.BookController",
+    "Method": "create",
+    "RelativePath": "book/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "WebApplication1.Models.Book",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Controllers.BookController",
     "Method": "Detail",
     "RelativePath": "book/detail/{id}",
     "HttpMethod": "GET",
