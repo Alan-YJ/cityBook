@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using WebApplication1.Models;
 
@@ -33,12 +34,38 @@ namespace WebApplication1.Controllers
         // POST: book/add
         [HttpPost]
         [Route("book/create")]
-        public async Task<ActionResult<Book>> create(Book book) { 
+        public async Task<ActionResult<Book>> Create(Book book) { 
             _coreDbContext.Book.Add(book);
             await _coreDbContext.SaveChangesAsync();
             return CreatedAtAction(nameof(Detail), new { id = book.Id });
         }
 
+        [HttpPut("{id}")]
+        [Route("book/save")]
+        public async Task<IActionResult> Save(int id, Book book) { 
+            if(id != book.Id)
+            {
+                return BadRequest();
+            }
+            _coreDbContext.Entry(book).State = EntityState.Modified;
+            _coreDbContext.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        [Route("book/delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var book = await _coreDbContext.Book.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            _coreDbContext.Book.Remove(book);
+            await _coreDbContext.SaveChangesAsync();
+            return NoContent();
+        }
         //// GET: BookController/Create
         //public ActionResult Create()
         //{
