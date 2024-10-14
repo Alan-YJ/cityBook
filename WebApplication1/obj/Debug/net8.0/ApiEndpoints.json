@@ -1,8 +1,34 @@
 [
   {
     "ContainingType": "WebApplication1.Controllers.BookController",
+    "Method": "Detail",
+    "RelativePath": "book/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApplication1.Models.Book",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Controllers.BookController",
     "Method": "Save",
-    "RelativePath": "{id}",
+    "RelativePath": "book/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -18,7 +44,7 @@
   {
     "ContainingType": "WebApplication1.Controllers.BookController",
     "Method": "Delete",
-    "RelativePath": "{id}",
+    "RelativePath": "book/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -38,40 +64,10 @@
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Models.Book",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "WebApplication1.Controllers.BookController",
-    "Method": "Delete",
-    "RelativePath": "book/delete",
-    "HttpMethod": "",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebApplication1.Controllers.BookController",
-    "Method": "Detail",
-    "RelativePath": "book/detail/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "book",
+        "Type": "WebApplication1.Models.Book",
         "IsRequired": true
       }
     ],
@@ -106,15 +102,5 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "WebApplication1.Controllers.BookController",
-    "Method": "Save",
-    "RelativePath": "book/save",
-    "HttpMethod": "",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
   }
 ]

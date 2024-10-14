@@ -208,3 +208,11 @@ E:\Projects\cityBook\WebApplication1\obj\Debug\net8.0\refint\WebApplication1.dll
 E:\Projects\cityBook\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 E:\Projects\cityBook\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 E:\Projects\cityBook\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
+D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\source\repos\WebApplication1\WebApplication1\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

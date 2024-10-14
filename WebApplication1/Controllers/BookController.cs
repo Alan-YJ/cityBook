@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -6,6 +7,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     [ApiController]
     public class BookController : Controller
     {
@@ -16,6 +18,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: book/list
+        [AllowAnonymous]
         [HttpGet]
         [Route("book/list")]
         public List<Book> List()
@@ -23,38 +26,45 @@ namespace WebApplication1.Controllers
             return _coreDbContext.Set<Book>().ToList();
         }
 
-        // GET: book/detail/{id}
+        // GET: book/{id}
+        [AllowAnonymous]
         [HttpGet]
-        [Route("book/detail/{id}")]
-        public Book Detail(int id)
+        [Route("book/{id}")]
+        public async Task<ActionResult<Book>> Detail(int id)
         {
-            return _coreDbContext.Set<Book>().Single(x => x.Id == id);
+            var book = await _coreDbContext.Set<Book>().FindAsync(id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return book;
         }
 
-        // POST: book/add
+        // POST: book/create
         [HttpPost]
         [Route("book/create")]
-        public async Task<ActionResult<Book>> Create(Book book) { 
+        public async Task<ActionResult<Book>> Create([FromBody]Book book) { 
             _coreDbContext.Book.Add(book);
             await _coreDbContext.SaveChangesAsync();
-            return CreatedAtAction(nameof(Detail), new { id = book.Id });
+            return CreatedAtAction("Detail", new { id = book.Id }, book);
         }
 
-        [HttpPut("{id}")]
-        [Route("book/save")]
+        [HttpPut]
+        [Route("book/{id}")]
         public async Task<IActionResult> Save(int id, Book book) { 
             if(id != book.Id)
             {
                 return BadRequest();
             }
             _coreDbContext.Entry(book).State = EntityState.Modified;
-            _coreDbContext.SaveChangesAsync();
+            await _coreDbContext.SaveChangesAsync();
 
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        [Route("book/delete")]
+        [HttpDelete]
+        [Route("book/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var book = await _coreDbContext.Book.FindAsync(id);
@@ -66,67 +76,5 @@ namespace WebApplication1.Controllers
             await _coreDbContext.SaveChangesAsync();
             return NoContent();
         }
-        //// GET: BookController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //// POST: BookController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: BookController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: BookController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: BookController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: BookController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }
